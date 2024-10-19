@@ -26,16 +26,11 @@ declare(strict_types=1);
  */
 function getMenu(array $menu, bool $vertical = true): void
 {
-    echo '<ul class="menu">';
-    if ($vertical) {
+    if($vertical) echo '<ul class="menu">';
+    else echo '<ul class="menu vertical">';
         foreach ($menu as $item) {
             echo '<li><a href="' . $item['href'] . '">' . $item['link'] . '</a></li>';
         }
-    } else {
-        foreach ($menu as $item) {
-            echo '<li style="display:inline;margin-right:15px;"><a href="' . $item['href'] . '">' . $item['link'] . '</a></li>';
-        }
-    }
     echo '</ul>';
 }
 $leftMenu = [
