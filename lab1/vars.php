@@ -17,8 +17,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Переменные и вывод</title>
 </head>
-<body>
 	<h1>Переменные и вывод</h1>
+    
+    <p>Изолирование кода:</p>
+    <p>Меня зовут: <?= $name?></p>
+    <p>Мне <?= $age?> год</p>
+    <p>Тип переменной $name: <?=var_dump($name);?></p>
+    <p>Тип переменной $age: <?=var_dump($age);?></p>
+
 	<?php
     // echo "Меня зовут: ", $name," ";
     // echo "Мне $age год ";
@@ -42,6 +48,8 @@
     var_dump($name);
     echo '<br>';
     var_dump($age);
+
+
 
     // echo "Удаление переменных через unset()" . '<br>';
     unset( $age, $name );
