@@ -1,5 +1,14 @@
 <?php
 declare(strict_types=1);
+/**
+ * Функция для отрисовки таблицы умножения.
+ *
+ * @param int $cols Количество колонок в таблице
+ * @param int $rows Количество строк в таблице
+ * @param string $color Цвет фона для ячеек первых столбца и строки таблицы
+ * @static $count Количество вызовов функции
+ * @return int Возвращает количество вызовов функции
+ */
 function getTable(int $cols = 7, int $rows = 7, string $color = 'orange'): int
 {
 	static $count = 0;
@@ -21,6 +30,14 @@ function getTable(int $cols = 7, int $rows = 7, string $color = 'orange'): int
 	return $count;
 }
 
+/**
+ * Функция для отрисовки меню.
+ *
+ * @param array $menu Массив, содержащий элементы меню с ключами 'link' и 'href'.
+ * @param bool $vertical Отображение меню или вертикально (по умолчанию true) или горизонтально.
+ *
+ * @return void
+ */
 function getMenu(array $menu, bool $vertical = true): void
 {
     echo '<ul class="menu">';
