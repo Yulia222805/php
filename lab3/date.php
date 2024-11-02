@@ -8,7 +8,7 @@ declare(strict_types=1);
    - С помощью функции getdate() присвойте переменной $hour текущий час
    */
 $now = time();
-$birthday = mktime(8, 30, 0, 4, 22, 2003);
+$birthday = mktime(8, 30, 0, 4, 22, (int)date('Y'));
 $hour = getdate($now)['hours'];
 ?>
 <!DOCTYPE html>
@@ -52,8 +52,9 @@ $hour = getdate($now)['hours'];
 		$welcome = 'Доброе утро';
 	elseif ($hour >= 12 && $hour < 18)
 		$welcome = 'Добрый день';
-	elseif ($hour >= 18 && $hour <= 23)
+	elseif ($hour >= 18 && $hour < 23)
 		$welcome = 'Добрый вечер';
+	else $welcome = 'Доброй ночи';
 	echo '<br>' . $welcome . '<br>';
 
 	setlocale(LC_ALL, 'ru_RU.UTF-8');
@@ -70,18 +71,21 @@ $hour = getdate($now)['hours'];
 
 	echo 'Сегодня ' . datefmt_format($fmt, $now) . '<br>';
 
-	$birtdayItem = getdate($birthday);
+	$birthdayItem = getdate($birthday);
 
-	$nextBirtday = mktime(
-		$birtdayItem['hours'], 
-		$birtdayItem['minutes'], 
-		$birtdayItem['seconds'], 
-		$birtdayItem['mon'], 
-		$birtdayItem['mday'], 
-		(int)date('Y')+1
-	);
+	if($birthday < $now){
+		$birthday = mktime(
+			$birthdayItem['hours'], 
+			$birthdayItem['minutes'], 
+			$birthdayItem['seconds'], 
+			$birthdayItem['mon'], 
+			$birthdayItem['mday'], 
+			(int)date('Y') + 1,
+		);
+	}
+	
+	$diff = $birthday - $now;
 
-	$diff = $nextBirtday - $now;
 	$day = floor($diff / ((60 * 60 * 24)));
 	$diff %= 60 * 60 * 24;
 	$hours = floor($diff / (60 * 60));

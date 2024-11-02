@@ -44,10 +44,10 @@
     <!-- Таблица -->
      <?php include('inc/lib.inc.php');
     include('inc/data.inc.php');
-    $rows = $_POST['rows'] ?? $rows;
-    $cols = $_POST['cols'] ?? $cols;
-    $color = $_POST['color'] ?? $color;
-     getTable((int)$cols, (int)$rows, (string)$color); 
+    // $rows = $_POST['rows'] ?? $rows;
+    // $cols = $_POST['cols'] ?? $cols;
+    // $color = $_POST['color'] ?? $color;
+     getTable(/* (int)$cols, (int)$rows, (string)$color */); 
      ?>
     <!-- <table border='1' width='200'>
       <tr>

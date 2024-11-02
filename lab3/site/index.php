@@ -1,7 +1,6 @@
-
 <?php
-include("inc/lib.inc.php");
-include("inc/data.inc.php");
+include('inc/lib.inc.php');
+include('inc/data.inc.php');
 		/*
 		ЗАДАНИЕ 1
 		- В папке сайта создайте папку под названием inc

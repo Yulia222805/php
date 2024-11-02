@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @static $count Количество вызовов функции
  * @return int Возвращает количество вызовов функции
  */
-function getTable(int $cols = 7, int $rows = 7, string $color = 'orange'): int
+function drawTable(int $cols = 7, int $rows = 7, string $color = 'orange'): int
 {
 	static $count = 0;
 	$count++;
