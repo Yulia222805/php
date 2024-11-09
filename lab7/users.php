@@ -69,6 +69,12 @@ $user = new SuperUser('user', 'loginUser', 'passwdUser', 'roleUser');
 
 $user->showInfo();
 
+unset($user1);
+unset($user2);
+unset($user3);
+unset($user);
+
+
 ?>
 
 </body>

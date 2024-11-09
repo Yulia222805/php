@@ -10,12 +10,8 @@
   После этого с помощью функции header() выполните перезапрос страницы, 
   чтобы избавиться от информации, переданной через форму
 */
-$hostname = 'localhost';
-$username = 'f1035909_login_db';
-$password = 'vAB7p8YY';
-$database = 'f1035909_login_db';
-$tablename = 'msgs';
-$mysqli = new mysqli($hostname, $username, $password, $database);
+require_once('db_config.php');
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if($mysqli->connect_error) { die('Connect error ' . $mysqli->connect_error); }
 
 $mysqli->set_charset('utf8');
@@ -30,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       [$name, $email, $msg]
     ); */
 
-    $queryINSERT = "INSERT INTO $tablename(name, email, msg) VALUES('$name', '$email', '$msg')";
+    $queryINSERT = "INSERT INTO " . DB_TABLE . "(name, email, msg) VALUES('$name', '$email', '$msg')";
     $mysqli->query($queryINSERT);
     if($mysqli->errno) { die('Error query insert: ' . $mysqli->error); }
     header('Location:'. $_SERVER['PHP_SELF']);
@@ -49,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
     // $stmt = $mysqli->prepare("DELETE FROM $tablename WHERE id = ?");
     // $stmt->bind_param('i', $id);
     // $stmt->execute();
-    $queryDELETE = "DELETE FROM $tablename WHERE id = $id";
+    $queryDELETE = "DELETE FROM " . DB_TABLE . " WHERE id = $id";
     $mysqli->query($queryDELETE);
     if($mysqli->errno) { die('Error query delete: ' . $mysqli->error); }
     header('Location:' . $_SERVER['PHP_SELF']);
@@ -71,9 +67,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
 Ваше имя:<br>
-<input type="text" name="name"><br>
+<input type="text" name="name" required><br>
 Ваш E-mail:<br>
-<input type="email" name="email"><br>
+<input type="email" name="email" required><br>
 Сообщение:<br>
 <textarea name="msg" cols="50" rows="5"></textarea><br>
 <br>
@@ -95,7 +91,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
   записи. Информацию об идентификаторе удаляемого сообщения передавайте методом GET.
 */
 
-$querySELECT = "SELECT * FROM $tablename ORDER BY id DESC";
+$querySELECT = "SELECT * FROM " . DB_TABLE . " ORDER BY id DESC";
 $resultSELECT = $mysqli->query($querySELECT) or die('Error query select: ' . $mysqli->error);
 
 $rows = $resultSELECT->num_rows;
